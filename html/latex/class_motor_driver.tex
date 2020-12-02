@@ -1,0 +1,137 @@
+\hypertarget{class_motor_driver}{}\doxysection{Motor\+Driver Class Reference}
+\label{class_motor_driver}\index{MotorDriver@{MotorDriver}}
+
+
+Class which controls a motor through the D\+R\+V8871 motor driver.  
+
+
+
+
+{\ttfamily \#include $<$motordriver.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_motor_driver_a04312efb86cc7ef984b53bcd26b08a54}{Motor\+Driver}} (uint8\+\_\+t M1, uint8\+\_\+t M2)
+\begin{DoxyCompactList}\small\item\em Create a motor driver given 2 pins. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_driver_a32e566f41d43feb94eed9824737219db}{forward}} (void)
+\begin{DoxyCompactList}\small\item\em Tells the motor to move forward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_driver_a0f8d0fc934bbcf337f9c82356dc5006c}{brake}} (void)
+\begin{DoxyCompactList}\small\item\em Tells the motor to brake. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_driver_ab6cce59942678995b26d980073315c3d}{reverse}} (void)
+\begin{DoxyCompactList}\small\item\em Tells the motor to move in reverse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_driver_ab5bc918ec98237e1012d5f6b3fe3d2c3}{coast}} (void)
+\begin{DoxyCompactList}\small\item\em Tells the motor to coast. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_driver_a4dbed27fc3d3b4a1ddeefdde1ccd5294}\label{class_motor_driver_a4dbed27fc3d3b4a1ddeefdde1ccd5294}} 
+uint8\+\_\+t {\bfseries get\+P\+WM} (void)
+\item 
+\mbox{\Hypertarget{class_motor_driver_a3a1fe7a221296db1a83a0282d5844812}\label{class_motor_driver_a3a1fe7a221296db1a83a0282d5844812}} 
+uint8\+\_\+t {\bfseries get\+Direction} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_motor_driver_a9752b30437d026c2658da6814ca920ac}\label{class_motor_driver_a9752b30437d026c2658da6814ca920ac}} 
+uint8\+\_\+t {\bfseries P\+WM}
+\item 
+\mbox{\Hypertarget{class_motor_driver_a74418c4e034993d2cdbc014900efa398}\label{class_motor_driver_a74418c4e034993d2cdbc014900efa398}} 
+uint8\+\_\+t {\bfseries pin\+\_\+\+M1}
+\item 
+\mbox{\Hypertarget{class_motor_driver_aa5836a1df91530e0f6605d6bf87424c0}\label{class_motor_driver_aa5836a1df91530e0f6605d6bf87424c0}} 
+uint8\+\_\+t {\bfseries pin\+\_\+\+M2}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class which controls a motor through the D\+R\+V8871 motor driver. 
+
+~\newline
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_motor_driver_a04312efb86cc7ef984b53bcd26b08a54}\label{class_motor_driver_a04312efb86cc7ef984b53bcd26b08a54}} 
+\index{MotorDriver@{MotorDriver}!MotorDriver@{MotorDriver}}
+\index{MotorDriver@{MotorDriver}!MotorDriver@{MotorDriver}}
+\doxysubsubsection{\texorpdfstring{MotorDriver()}{MotorDriver()}}
+{\footnotesize\ttfamily Motor\+Driver\+::\+Motor\+Driver (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{M1,  }\item[{uint8\+\_\+t}]{M2 }\end{DoxyParamCaption})}
+
+
+
+Create a motor driver given 2 pins. 
+
+This constructor takes two Pins, M1 and M2. 
+\begin{DoxyParams}{Parameters}
+{\em M1} & The Pin connected to M1 on the motor \\
+\hline
+{\em M2} & The Pin connected to M2 on the motor \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_motor_driver_a0f8d0fc934bbcf337f9c82356dc5006c}\label{class_motor_driver_a0f8d0fc934bbcf337f9c82356dc5006c}} 
+\index{MotorDriver@{MotorDriver}!brake@{brake}}
+\index{brake@{brake}!MotorDriver@{MotorDriver}}
+\doxysubsubsection{\texorpdfstring{brake()}{brake()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::brake (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Tells the motor to brake. 
+
+Use this function to stop the motor.
+
+\begin{DoxyReturn}{Returns}
+Nothing. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_motor_driver_ab5bc918ec98237e1012d5f6b3fe3d2c3}\label{class_motor_driver_ab5bc918ec98237e1012d5f6b3fe3d2c3}} 
+\index{MotorDriver@{MotorDriver}!coast@{coast}}
+\index{coast@{coast}!MotorDriver@{MotorDriver}}
+\doxysubsubsection{\texorpdfstring{coast()}{coast()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::coast (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Tells the motor to coast. 
+
+Use this function to allow the motor to freely rotate.
+
+\begin{DoxyReturn}{Returns}
+Nothing. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_motor_driver_a32e566f41d43feb94eed9824737219db}\label{class_motor_driver_a32e566f41d43feb94eed9824737219db}} 
+\index{MotorDriver@{MotorDriver}!forward@{forward}}
+\index{forward@{forward}!MotorDriver@{MotorDriver}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::forward (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Tells the motor to move forward. 
+
+Motor runs at full speed.
+
+\begin{DoxyReturn}{Returns}
+Nothing. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_motor_driver_ab6cce59942678995b26d980073315c3d}\label{class_motor_driver_ab6cce59942678995b26d980073315c3d}} 
+\index{MotorDriver@{MotorDriver}!reverse@{reverse}}
+\index{reverse@{reverse}!MotorDriver@{MotorDriver}}
+\doxysubsubsection{\texorpdfstring{reverse()}{reverse()}}
+{\footnotesize\ttfamily void Motor\+Driver\+::reverse (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Tells the motor to move in reverse. 
+
+Motor runs at full speed.
+
+\begin{DoxyReturn}{Returns}
+Nothing. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{motordriver_8h}{motordriver.\+h}}\item 
+src/\mbox{\hyperlink{motordriver_8cpp}{motordriver.\+cpp}}\end{DoxyCompactItemize}

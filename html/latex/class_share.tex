@@ -1,0 +1,219 @@
+\hypertarget{class_share}{}\doxysection{Share$<$ Data\+Type $>$ Class Template Reference}
+\label{class_share}\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+
+
+Class for data to be shared in a thread-\/safe manner between tasks.  
+
+
+
+
+{\ttfamily \#include $<$taskshare.\+h$>$}
+
+Inheritance diagram for Share$<$ Data\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_share}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_share_a0948b04d00aef072f25af2f49ecfa259}{Share}} (const char $\ast$p\+\_\+name=N\+U\+LL)
+\begin{DoxyCompactList}\small\item\em Construct a shared data item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_share_a748eb6574da2811e8f1cd6a67531336f}{put}} (Data\+Type)
+\begin{DoxyCompactList}\small\item\em Put data into the shared data item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_share_a6391aa21fff8695d1efdcdb07a56feec}{I\+S\+R\+\_\+put}} (Data\+Type)
+\begin{DoxyCompactList}\small\item\em Put data into the shared data item from within an I\+SR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_share_ad8a69a91042b6465b508c3fc93bbf2d2}{get}} (Data\+Type \&)
+\begin{DoxyCompactList}\small\item\em Read data from the shared data item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_share_a9a556eb09db50c6421ccd0d3f07bc905}{I\+S\+R\+\_\+get}} (Data\+Type \&)
+\begin{DoxyCompactList}\small\item\em Read data from the shared data item, from within an I\+SR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_share_afbda236ee6fe392200a766d7e4e8a080}{print\+\_\+in\+\_\+list}} (Print \&printer)
+\begin{DoxyCompactList}\small\item\em Print the name and type (share) of this data item. \end{DoxyCompactList}\item 
+Data\+Type \& \mbox{\hyperlink{class_share_af06e2b1c56e997767bc4b42129cc1a15}{operator++}} (void)
+\begin{DoxyCompactList}\small\item\em The prefix increment causes the shared data to increase by one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_share_aa25e220e5ddcc6c162afbda754ab3929}\label{class_share_aa25e220e5ddcc6c162afbda754ab3929}} 
+Data\+Type \mbox{\hyperlink{class_share_aa25e220e5ddcc6c162afbda754ab3929}{operator++}} (int)
+\begin{DoxyCompactList}\small\item\em The postfix increment causes the shared data to increase by one. \end{DoxyCompactList}\item 
+Data\+Type \& \mbox{\hyperlink{class_share_a423167619b7e994a18cefb795b31ffda}{operator-\/-\/}} (void)
+\begin{DoxyCompactList}\small\item\em The prefix decrement causes the shared data to decrease by one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_share_a802c6d21fd219e25122f6b93f92ab407}\label{class_share_a802c6d21fd219e25122f6b93f92ab407}} 
+Data\+Type \mbox{\hyperlink{class_share_a802c6d21fd219e25122f6b93f92ab407}{operator-\/-\/}} (int)
+\begin{DoxyCompactList}\small\item\em The postfix decrement causes the shared data to decrease by one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_share_a7247d922017c7720e3c2146a9d286be6}\label{class_share_a7247d922017c7720e3c2146a9d286be6}} 
+Data\+Type \mbox{\hyperlink{class_share_a7247d922017c7720e3c2146a9d286be6}{the\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Holds the data to be shared. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Data\+Type$>$\newline
+class Share$<$ Data\+Type $>$}
+
+Class for data to be shared in a thread-\/safe manner between tasks. 
+
+This class implements an item of data which can be shared between tasks without the risk of data corruption associated with global variables. Unlike queues, shares do not use a buffer for many data items; there is only a one-\/item buffer in which the most recent value of the data is kept. Shares therefore do not provide the task synchronization or incur the overhead associated with queues.
+
+The data is protected by using critical code sections (see the Free\+R\+T\+OS documentation of {\ttfamily port\+E\+N\+T\+E\+R\+\_\+\+C\+R\+I\+T\+I\+C\+A\+L()} ) so that tasks can\textquotesingle{}t interrupt each other when reading or writing the data is taking place. This prevents data corruption due to thread switching. The C++ template mechanism is used to ensure that only data of the correct type is put into or taken from a shared data item. A {\ttfamily Task\+Share$<$\+Data\+Type$>$} object keeps its own separate copy of the data. This uses some memory, but it is necessary to reliably prevent data corruption; it prevents possible side effects from causing the sender\textquotesingle{}s copy of the data from being inadvertently changed.\hypertarget{class_share_usage_share}{}\doxysubsection{Usage}\label{class_share_usage_share}
+The following bits of code show how to set up and use a share to transfer data of type {\ttfamily uint16\+\_\+t} from one hypothetical task called {\ttfamily task\+\_\+A} to another called {\ttfamily task\+\_\+B}.
+
+In the file which contains {\ttfamily \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}} we create a shared data object. The constructor of the {\ttfamily Share$<$uint16\+\_\+t$>$} class is given a name for the share; the name will be shown on system diagnostic printouts. If it is desired to print diagnostic information to a serial monitor, a pointer to an output stream may also be given\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{taskshare_8h}{taskshare.h}}"{}}}
+\DoxyCodeLine{...}
+\DoxyCodeLine{Share<uint16\_t> my\_share (\textcolor{stringliteral}{"{}Data\_3"{}}, \&Serial);}
+\end{DoxyCode}
+ If there are any tasks which use this share in other source files, we must re-\/declare this share with the keyword {\ttfamily extern} near the top of those files to make it accessible to those task(s). This copy of the share does not need a Doxygen comment\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Sensor 3 (right antler) data}}
+\DoxyCodeLine{\textcolor{keyword}{extern} \mbox{\hyperlink{class_share}{Share<uint16\_t>}} my\_share;}
+\end{DoxyCode}
+ In the sending task, data is put into the share\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint16\_t a\_data\_item = 42;     }
+\DoxyCodeLine{...}
+\DoxyCodeLine{a\_data\_item = antler3 ();      \textcolor{comment}{// Get the data}}
+\DoxyCodeLine{my\_share.\mbox{\hyperlink{class_share_a748eb6574da2811e8f1cd6a67531336f}{put}} (a\_data\_item);    \textcolor{comment}{// Put data into share}}
+\end{DoxyCode}
+ In the receiving task, data is read from the share\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint16\_t got\_data;             }
+\DoxyCodeLine{...}
+\DoxyCodeLine{my\_share.get (got\_data);       \textcolor{comment}{// Get local copy of shared data}}
+\end{DoxyCode}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_share_a0948b04d00aef072f25af2f49ecfa259}\label{class_share_a0948b04d00aef072f25af2f49ecfa259}} 
+\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}!Share@{Share}}
+\index{Share@{Share}!Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+\doxysubsubsection{\texorpdfstring{Share()}{Share()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+\mbox{\hyperlink{class_share}{Share}}$<$ Data\+Type $>$\+::\mbox{\hyperlink{class_share}{Share}} (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p\+\_\+name = {\ttfamily NULL} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a shared data item. 
+
+This default constructor for a shared data item doesn\textquotesingle{}t do much besides allocate memory because there isn\textquotesingle{}t any particular setup required. Note that the data is {\bfseries{not}} initialized. 
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+name} & A name to be shown in the list of task shares (default {\ttfamily N\+U\+LL}) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_share_ad8a69a91042b6465b508c3fc93bbf2d2}\label{class_share_ad8a69a91042b6465b508c3fc93bbf2d2}} 
+\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}!get@{get}}
+\index{get@{get}!Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+void \mbox{\hyperlink{class_share}{Share}}$<$ Data\+Type $>$\+::get (\begin{DoxyParamCaption}\item[{Data\+Type \&}]{recv\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Read data from the shared data item. 
+
+This method is used to read data from the shared data item with critical section protection to ensure that the data cannot be corrupted by a task switch. The shared data is copied into the variable which is given as this parameter\textquotesingle{}s function, replacing the previous contents of that variable. 
+\begin{DoxyParams}{Parameters}
+{\em recv\+\_\+data} & A reference to the variable in which to put received data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_share_a9a556eb09db50c6421ccd0d3f07bc905}\label{class_share_a9a556eb09db50c6421ccd0d3f07bc905}} 
+\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}!ISR\_get@{ISR\_get}}
+\index{ISR\_get@{ISR\_get}!Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_get()}{ISR\_get()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+void \mbox{\hyperlink{class_share}{Share}}$<$ Data\+Type $>$\+::I\+S\+R\+\_\+get (\begin{DoxyParamCaption}\item[{Data\+Type \&}]{recv\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Read data from the shared data item, from within an I\+SR. 
+
+This method is used to enable code within an I\+SR to read data from the shared data item. It must only be called from within an interrupt service routine, not a normal task. This is because critical section protection isn\textquotesingle{}t used here, which is OK, assuming that an interrupt can\textquotesingle{}t be interrupted by another interrupt, which is the case on most small microcontrollers. 
+\begin{DoxyParams}{Parameters}
+{\em recv\+\_\+data} & A reference to the variable in which to put received data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_share_a6391aa21fff8695d1efdcdb07a56feec}\label{class_share_a6391aa21fff8695d1efdcdb07a56feec}} 
+\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}!ISR\_put@{ISR\_put}}
+\index{ISR\_put@{ISR\_put}!Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_put()}{ISR\_put()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+void \mbox{\hyperlink{class_share}{Share}}$<$ Data\+Type $>$\+::I\+S\+R\+\_\+put (\begin{DoxyParamCaption}\item[{Data\+Type}]{new\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Put data into the shared data item from within an I\+SR. 
+
+This method writes data from an I\+SR into the shared data item. It must only be called from within an interrupt, not a normal task. This is because critical section protection isn\textquotesingle{}t used here, which is OK, assuming that an interrupt can\textquotesingle{}t be interrupted by another interrupt, which is the case on most small microcontrollers. 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+data} & The data which is to be written into the shared data item \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_share_af06e2b1c56e997767bc4b42129cc1a15}\label{class_share_af06e2b1c56e997767bc4b42129cc1a15}} 
+\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}!operator++@{operator++}}
+\index{operator++@{operator++}!Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+Data\+Type\& \mbox{\hyperlink{class_share}{Share}}$<$ Data\+Type $>$\+::operator++ (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The prefix increment causes the shared data to increase by one. 
+
+This operator just increases by one the variable held by the shared data item. {\bfseries{B\+UG\+:}} It should return a reference to this shared data item, but for some reason the compiler insists it must return a reference to the data {\itshape in} the shared data object. Why is unknown. \mbox{\Hypertarget{class_share_a423167619b7e994a18cefb795b31ffda}\label{class_share_a423167619b7e994a18cefb795b31ffda}} 
+\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/-\/()}{operator--()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+Data\+Type\& \mbox{\hyperlink{class_share}{Share}}$<$ Data\+Type $>$\+::operator-\/-\/ (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The prefix decrement causes the shared data to decrease by one. 
+
+This operator just decreases by one the variable held by the shared data item. {\bfseries{B\+UG\+:}} It should return a reference to this shared data item, but for some reason the compiler insists it must return a reference to the data {\itshape in} the shared data object. Why is unknown. \mbox{\Hypertarget{class_share_afbda236ee6fe392200a766d7e4e8a080}\label{class_share_afbda236ee6fe392200a766d7e4e8a080}} 
+\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}!print\_in\_list@{print\_in\_list}}
+\index{print\_in\_list@{print\_in\_list}!Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+\doxysubsubsection{\texorpdfstring{print\_in\_list()}{print\_in\_list()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+void \mbox{\hyperlink{class_share}{Share}}$<$ Data\+Type $>$\+::print\+\_\+in\+\_\+list (\begin{DoxyParamCaption}\item[{Print \&}]{printer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Print the name and type (share) of this data item. 
+
+This method prints the share\textquotesingle{}s name and a word indicating that it is a shared data item, as opposed to a queue, formatted to match similar printouts from other task shares such as queues. After printing this share\textquotesingle{}s information, it looks in the linked list of shares for the next one and asks it to print its information too. 
+\begin{DoxyParams}{Parameters}
+{\em printer} & Reference to a serial device on which to print the status \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_base_share_a6f72027a717afada4679fd08d08bb4b6}{Base\+Share}}.
+
+\mbox{\Hypertarget{class_share_a748eb6574da2811e8f1cd6a67531336f}\label{class_share_a748eb6574da2811e8f1cd6a67531336f}} 
+\index{Share$<$ DataType $>$@{Share$<$ DataType $>$}!put@{put}}
+\index{put@{put}!Share$<$ DataType $>$@{Share$<$ DataType $>$}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily template$<$class Data\+Type $>$ \\
+void \mbox{\hyperlink{class_share}{Share}}$<$ Data\+Type $>$\+::put (\begin{DoxyParamCaption}\item[{Data\+Type}]{new\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Put data into the shared data item. 
+
+This method is used to write data into the shared data item. It\textquotesingle{}s declared {\ttfamily inline} so that instead of a regular function call at the assembly language level, {\ttfamily an\+\_\+object.\+put (x);} will result in the code within this function being inserted directly into the calling function. This is faster than doing a regular function call, which involves pushing the program counter on the stack, pushing parameters, jumping, making space for local variables, jumping back and popping the program counter, {\itshape etc}. 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+data} & The data which is to be written \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{taskshare_8h}{taskshare.\+h}}\end{DoxyCompactItemize}

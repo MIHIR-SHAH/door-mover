@@ -1,0 +1,148 @@
+\hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$Print\+Stream.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}taskshare.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Wire.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Adafruit\+\_\+\+M\+C\+P9808.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}motordriver.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a85b737dc00bf43da61b98685ec86e081}{task\+\_\+temp\+\_\+difference}} (void $\ast$p\+\_\+params)
+\begin{DoxyCompactList}\small\item\em Read temperatures and calculate the difference. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_aee716c7993c678de3851dfb9e59f882e}{task\+\_\+motor\+\_\+movement}} (void $\ast$p\+\_\+params)
+\begin{DoxyCompactList}\small\item\em Task that operates motor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a2774f3bddf8e9c803951fb40f5d034db}{task\+\_\+e\+\_\+stop}} (void $\ast$p\+\_\+params)
+\begin{DoxyCompactList}\small\item\em Emergency stop task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_ac7fd3141da80f58d85c871b95226e83c}{magnet\+\_\+detect}} ()
+\begin{DoxyCompactList}\small\item\em I\+SR that counts encoder ticks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Arduino setup function which runs once at program startup. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\label{main_8cpp_afe461d27b9c48d5921c00d521181f12f}} 
+void {\bfseries loop} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8cpp_a9c102c2e37de30b9a030153fbe8e60f0}\label{main_8cpp_a9c102c2e37de30b9a030153fbe8e60f0}} 
+Adafruit\+\_\+\+M\+C\+P9808 {\bfseries temp\+Outside} = Adafruit\+\_\+\+M\+C\+P9808()
+\item 
+\mbox{\Hypertarget{main_8cpp_a7030f2c0d7eb83b739d855af82558dc0}\label{main_8cpp_a7030f2c0d7eb83b739d855af82558dc0}} 
+Adafruit\+\_\+\+M\+C\+P9808 {\bfseries temp\+Inside} = Adafruit\+\_\+\+M\+C\+P9808()
+\item 
+\mbox{\Hypertarget{main_8cpp_a75c856dbf3e53e2b5e5cc5647f5dcb22}\label{main_8cpp_a75c856dbf3e53e2b5e5cc5647f5dcb22}} 
+\mbox{\hyperlink{class_motor_driver}{Motor\+Driver}} {\bfseries moto} = \mbox{\hyperlink{class_motor_driver}{Motor\+Driver}}(D8, D9)
+\item 
+\mbox{\Hypertarget{main_8cpp_af68e6ebbe98a0f682c401ff2ae183c2e}\label{main_8cpp_af68e6ebbe98a0f682c401ff2ae183c2e}} 
+volatile int32\+\_\+t {\bfseries ticks}
+\item 
+\mbox{\Hypertarget{main_8cpp_a67454f6aedaae49cf3f7f60319f49e9e}\label{main_8cpp_a67454f6aedaae49cf3f7f60319f49e9e}} 
+\mbox{\hyperlink{class_share}{Share}}$<$ bool $>$ {\bfseries emergency} (\char`\"{}Emergency Stop\char`\"{})
+\item 
+\mbox{\Hypertarget{main_8cpp_a6fd0bbb609d79e456c2b59f6cce5db0d}\label{main_8cpp_a6fd0bbb609d79e456c2b59f6cce5db0d}} 
+\mbox{\hyperlink{class_share}{Share}}$<$ float $>$ {\bfseries temp\+\_\+difference} (\char`\"{}Temperature Difference\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the main program that automates door motion.
+
+\begin{DoxyAuthor}{Author}
+Zoe Lam 
+
+Andrew Noble 
+
+Mihir Shah 
+
+Various creaters of read files
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2020-\/Nov-\/12 Original file 
+
+2020-\/Nov-\/19 MS Added motor task, emergency stop and distance measurement task, and encoder 
+
+2020-\/Nov-\/24 ZL Modified tasks 
+
+2020-\/Nov-\/25 AN Updated motor encoder tick values, small adjustments to task priorities 
+
+2020-\/Nov-\/26 MS Small updates to if statements and while loops to ensure motor will stop at certain distance. Also added some testing code for virtual testing using the wrong parts... 
+
+2020-\/Nov-\/28 ZL, MS Work on debugging code 
+
+2020-\/Nov-\/29 ZL, MS Completed debugging and commented code 
+
+2020-\/Nov-\/30 ZL, added bool closed to check if door is open or closed 
+
+2020-\/Nov-\/30 MS, debugging bool closed to check if door is open or closed, updated emergency stop functionality, beautified the code 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_ac7fd3141da80f58d85c871b95226e83c}\label{main_8cpp_ac7fd3141da80f58d85c871b95226e83c}} 
+\index{main.cpp@{main.cpp}!magnet\_detect@{magnet\_detect}}
+\index{magnet\_detect@{magnet\_detect}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{magnet\_detect()}{magnet\_detect()}}
+{\footnotesize\ttfamily void magnet\+\_\+detect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+I\+SR that counts encoder ticks. 
+
+Is called whenever input is detected on interrupt pin. Increases tick count each time motor disk passes the encoder magnet. \mbox{\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}} 
+\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Arduino setup function which runs once at program startup. 
+
+This function sets up a serial port for communication and creates the tasks which will be run. \mbox{\Hypertarget{main_8cpp_a2774f3bddf8e9c803951fb40f5d034db}\label{main_8cpp_a2774f3bddf8e9c803951fb40f5d034db}} 
+\index{main.cpp@{main.cpp}!task\_e\_stop@{task\_e\_stop}}
+\index{task\_e\_stop@{task\_e\_stop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{task\_e\_stop()}{task\_e\_stop()}}
+{\footnotesize\ttfamily void task\+\_\+e\+\_\+stop (\begin{DoxyParamCaption}\item[{void $\ast$}]{p\+\_\+params }\end{DoxyParamCaption})}
+
+
+
+Emergency stop task. 
+
+Can be used to use any sort of input to convey an \char`\"{}emergency stop\char`\"{} signal to the motor movement task.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+params} & Does nothing but shut up a compiler warning \\
+\hline
+\end{DoxyParams}
+measured\+\_\+distance $<$ distance\+\_\+we\+\_\+want\mbox{\Hypertarget{main_8cpp_aee716c7993c678de3851dfb9e59f882e}\label{main_8cpp_aee716c7993c678de3851dfb9e59f882e}} 
+\index{main.cpp@{main.cpp}!task\_motor\_movement@{task\_motor\_movement}}
+\index{task\_motor\_movement@{task\_motor\_movement}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{task\_motor\_movement()}{task\_motor\_movement()}}
+{\footnotesize\ttfamily void task\+\_\+motor\+\_\+movement (\begin{DoxyParamCaption}\item[{void $\ast$}]{p\+\_\+params }\end{DoxyParamCaption})}
+
+
+
+Task that operates motor. 
+
+This task will actualize the motor in a certain direction depending on the temperature difference. If the difference is above 10 degrees the motor will move forward to open. If the difference is less than 3 the motor will move in reverse to close the door. If the difference is in between, the door will stay idle. Motion will stop after a set number of ticks is reached. 
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+params} & A pointer to function parameters which we don\textquotesingle{}t use. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_a85b737dc00bf43da61b98685ec86e081}\label{main_8cpp_a85b737dc00bf43da61b98685ec86e081}} 
+\index{main.cpp@{main.cpp}!task\_temp\_difference@{task\_temp\_difference}}
+\index{task\_temp\_difference@{task\_temp\_difference}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{task\_temp\_difference()}{task\_temp\_difference()}}
+{\footnotesize\ttfamily void task\+\_\+temp\+\_\+difference (\begin{DoxyParamCaption}\item[{void $\ast$}]{p\+\_\+params }\end{DoxyParamCaption})}
+
+
+
+Read temperatures and calculate the difference. 
+
+This task reads the inside and outside temperatures from the respective sensors. It then subtracts the outdoor temperature from the inside temperature and places the difference in the shared variable. 
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+params} & A pointer to function parameters which we don\textquotesingle{}t use. \\
+\hline
+\end{DoxyParams}

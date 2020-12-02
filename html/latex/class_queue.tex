@@ -1,0 +1,417 @@
+\hypertarget{class_queue}{}\doxysection{Queue$<$ data\+Type $>$ Class Template Reference}
+\label{class_queue}\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+
+
+Implements a queue to transmit data from one R\+T\+OS task to another.  
+
+
+
+
+{\ttfamily \#include $<$taskqueue.\+h$>$}
+
+Inheritance diagram for Queue$<$ data\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_queue}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_queue_ae4a3fd660457ea5f5a4f3605322db150}{Queue}} (Base\+Type\+\_\+t queue\+\_\+size, const char $\ast$p\+\_\+name=N\+U\+LL, Tick\+Type\+\_\+t=port\+M\+A\+X\+\_\+\+D\+E\+L\+AY)
+\begin{DoxyCompactList}\small\item\em Construct a queue object, allocating memory for the buffer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_aa0667e09529d356a04f1efde346af266}{put}} (const data\+Type \&item)
+\begin{DoxyCompactList}\small\item\em Put an item into the queue behind other items. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_a9c966c6f5f91ccaf12bcb7723b8145af}{I\+S\+R\+\_\+put}} (const data\+Type \&item)
+\begin{DoxyCompactList}\small\item\em Put an item into the queue from within an I\+SR. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_a255eb8557d8106fa5900c6e4a5483ce3}{butt\+\_\+in}} (const data\+Type \&item)
+\begin{DoxyCompactList}\small\item\em Put an item into the front of the queue to be retrieved first. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_a24849f96865b52468bcd611ee67bd7dc}{I\+S\+R\+\_\+butt\+\_\+in}} (const data\+Type \&item)
+\begin{DoxyCompactList}\small\item\em Put an item into the front of the queue from within an I\+SR. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_a7b240bc3f080ea3656d0847b5d291095}{is\+\_\+empty}} (void)
+\begin{DoxyCompactList}\small\item\em Return true if the queue is empty. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_ac0d4a3d7feae804dea7f3cc72f21c624}{I\+S\+R\+\_\+is\+\_\+empty}} (void)
+\begin{DoxyCompactList}\small\item\em Return true if the queue is empty, from within an I\+SR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_queue_a14df528749e226183df3fa5472368e82}{get}} (data\+Type \&recv\+\_\+item)
+\begin{DoxyCompactList}\small\item\em Remove the item at the head of the queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_queue_afd37b4f184be25ecebf7957900321bbf}{I\+S\+R\+\_\+get}} (data\+Type \&recv\+\_\+item)
+\begin{DoxyCompactList}\small\item\em Remove the item at the head of the queue from within an I\+SR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_queue_a44557ed37c98580b87d0196908330bcc}{peek}} (data\+Type \&recv\+\_\+item)
+\begin{DoxyCompactList}\small\item\em Return the item at the queue head without removing it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_queue_a087ad13824fab4dfa026ef5cf138ca05}{I\+S\+R\+\_\+peek}} (data\+Type \&recv\+\_\+item)
+\begin{DoxyCompactList}\small\item\em Return the item at the front of the queue without deleting it, from within an I\+SR. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_a7eb3e7ac6e9a1ec956a11cbdc7c5a44d}{any}} (void)
+\begin{DoxyCompactList}\small\item\em Return true if the queue has contents which can be read. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_a80711abebd086d5617e5c88dbd87b77a}{I\+S\+R\+\_\+any}} (void)
+\begin{DoxyCompactList}\small\item\em Return true if the queue has items in it, from within an I\+SR. \end{DoxyCompactList}\item 
+unsigned port\+B\+A\+S\+E\+\_\+\+T\+Y\+PE \mbox{\hyperlink{class_queue_a6bef71a925790602cef9eb6274ae61e3}{available}} (void)
+\begin{DoxyCompactList}\small\item\em Return the number of items in the queue. \end{DoxyCompactList}\item 
+unsigned port\+B\+A\+S\+E\+\_\+\+T\+Y\+PE \mbox{\hyperlink{class_queue_a1acce9f67b2549a17a8419536aac396b}{I\+S\+R\+\_\+available}} (void)
+\begin{DoxyCompactList}\small\item\em Return the number of items in the queue, to an I\+SR. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_queue_ace8d2d512e49f018c5e2df4b5a2bf810}{print\+\_\+in\+\_\+list}} (Print \&print\+\_\+dev)
+\begin{DoxyCompactList}\small\item\em Print the queue\textquotesingle{}s status to a serial device. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_queue_a2f5a7d38f857999a1c4cebe31089b0f7}{usable}} (void)
+\begin{DoxyCompactList}\small\item\em Indicates whether this queue is usable. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{class_queue_ab009e50722f689c48d146125f6d50519}{get\+\_\+handle}} (void)
+\begin{DoxyCompactList}\small\item\em Return a handle to the Free\+R\+T\+OS structure which runs this queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_queue_a69b90b10718e9469499375c61cc9c236}\label{class_queue_a69b90b10718e9469499375c61cc9c236}} 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{class_queue_a69b90b10718e9469499375c61cc9c236}{handle}}
+\begin{DoxyCompactList}\small\item\em Hhandle for the Free\+T\+OS queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_queue_ac7869eacf6bc024b4d8ce25496fdaaed}\label{class_queue_ac7869eacf6bc024b4d8ce25496fdaaed}} 
+Tick\+Type\+\_\+t \mbox{\hyperlink{class_queue_ac7869eacf6bc024b4d8ce25496fdaaed}{ticks\+\_\+to\+\_\+wait}}
+\begin{DoxyCompactList}\small\item\em R\+T\+OS ticks to wait for empty. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_queue_a2ede016bcaf8f330cd87f56a600218b1}\label{class_queue_a2ede016bcaf8f330cd87f56a600218b1}} 
+uint16\+\_\+t \mbox{\hyperlink{class_queue_a2ede016bcaf8f330cd87f56a600218b1}{buf\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of queue buffer in bytes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_queue_acd5a036b50ef0fc8f1e587bb7307cee4}\label{class_queue_acd5a036b50ef0fc8f1e587bb7307cee4}} 
+uint16\+\_\+t \mbox{\hyperlink{class_queue_acd5a036b50ef0fc8f1e587bb7307cee4}{max\+\_\+full}}
+\begin{DoxyCompactList}\small\item\em Maximum number of bytes in queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class data\+Type$>$\newline
+class Queue$<$ data\+Type $>$}
+
+Implements a queue to transmit data from one R\+T\+OS task to another. 
+
+Since multithreaded tasks must not use unprotected shared data items for communication, queues are a primary means of intertask communication. Other means include shared data items (see {\ttfamily \mbox{\hyperlink{taskshare_8h}{taskshare.\+h}}}) and carrier pigeons. The use of a C++ class template allows the compiler to check that you\textquotesingle{}re putting the correct type of data into each queue and getting the correct type of data out, thus helping to prevent programming mistakes that can corrupt your data.
+
+As a template class, {\ttfamily Queue$<$data\+Type$>$} can be used to make queues which hold data of many types. \char`\"{}\+Plain Old Data\char`\"{} types such as {\ttfamily bool} or {\ttfamily uint16\+\_\+t} are supported, of course. But you can also use queues which hold compound data types. For example, if you have {\ttfamily class} {\ttfamily my\+\_\+data} which holds several measurements together in an object, you can make a queue for {\ttfamily my\+\_\+data} objects with {\ttfamily Queue$<$my\+\_\+data$>$}. Each item in the queue will then hold several measurements.
+
+The size of Free\+R\+T\+OS queues is limited to 255 items in 8-\/bit microcontrollers whose {\ttfamily port\+B\+A\+S\+E\+\_\+\+T\+Y\+PE} is an 8-\/bit number. This is a Free\+R\+T\+OS feature.
+
+Normal writing and reading are done with methods {\ttfamily \mbox{\hyperlink{class_queue_aa0667e09529d356a04f1efde346af266}{put()}}} and {\ttfamily \mbox{\hyperlink{class_queue_a14df528749e226183df3fa5472368e82}{get()}}}. Normal writing means that the sending task must wait until there is empty space in the queue, and then it puts a data item into the \char`\"{}back\char`\"{} of the queue, where \char`\"{}back\char`\"{} means that the item in the back of the queue will be read after all items that were previously put into the queue have been read. Normal reading means that when an item is read from the front of the queue, it will then be removed, making space for more items at the back. This process is often used to synchronize tasks, as the reading task\textquotesingle{}s {\ttfamily \mbox{\hyperlink{class_queue_a14df528749e226183df3fa5472368e82}{get()}}} method blocks, meaning that the reading task gets stuck waiting for an item to arrive in the queue; it won\textquotesingle{}t do anything useful until new data has been read. Note that this is acceptable behavior in an R\+T\+OS because the R\+T\+OS scheduler will ensure that other tasks get to run even while the reading task is blocking itself waiting for data.
+
+In some cases, one may need to use less normal reading and writing methods. Methods whose name begins with {\ttfamily I\+S\+R\+\_\+} are to be used only within a hardware interrupt service routine. If there is a need to put data at the front of the queue instead of the back, use {\ttfamily \mbox{\hyperlink{class_queue_a255eb8557d8106fa5900c6e4a5483ce3}{butt\+\_\+in()}}} instead of {\ttfamily \mbox{\hyperlink{class_queue_aa0667e09529d356a04f1efde346af266}{put()}}}. If one needs to read data from the queue without removing that data, the {\ttfamily look\+\_\+at()} method allows this to be done. If something particularly unusual needs to be done with the queue, one can use the method {\ttfamily \mbox{\hyperlink{class_queue_ab009e50722f689c48d146125f6d50519}{get\+\_\+handle()}}} to retrieve the handle used by the C language functions in Free\+R\+T\+OS to access the \mbox{\hyperlink{class_queue}{Queue}} object\textquotesingle{}s underlying data structure directly.\hypertarget{class_queue_queue_usage}{}\doxysubsection{Usage}\label{class_queue_queue_usage}
+The following bits of code show how to set up and use a queue to transfer data of type {\ttfamily int16\+\_\+t} from one hypothetical task called {\ttfamily task\+\_\+A} to another called {\ttfamily task\+\_\+B}.
+
+Near the top of the file which contains {\ttfamily \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()}}} we create a queue. The constructor of the {\ttfamily Queue$<$int16\+\_\+t$>$} class is given the number of items in the queue (10 in this example) and an optional name for the queue\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{taskqueue_8h}{taskqueue.h}}"{}}}
+\DoxyCodeLine{...}
+\DoxyCodeLine{Queue<int16\_t> hockey\_queue (10, \textcolor{stringliteral}{"{}Puckey"{}});}
+\end{DoxyCode}
+ In a location which is before we use the queue in any other file than the one in which the queue was created, we re-\/declare the queue with the keyword {\ttfamily extern} to make it accessible to any task within that file\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{extern} \mbox{\hyperlink{class_queue}{Queue<int16\_t>}} hockey\_queue;}
+\end{DoxyCode}
+ In the sending task, data is put into the queue\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{int16\_t an\_item = -\/3;                 }
+\DoxyCodeLine{...}
+\DoxyCodeLine{an\_item = stick\_sensor.get\_data (2);  \textcolor{comment}{// Read data from sensor }}
+\DoxyCodeLine{hockey\_queue.\mbox{\hyperlink{class_queue_aa0667e09529d356a04f1efde346af266}{put}} (a\_data\_item);       \textcolor{comment}{// Put data into queue}}
+\end{DoxyCode}
+ In the receiving task, data is read from the queue. In typical usage, the call to {\ttfamily \mbox{\hyperlink{class_queue_a14df528749e226183df3fa5472368e82}{get()}}} will block the receiving task until data has been put into the queue by the sending task\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{int16\_t data\_we\_got;                  }
+\DoxyCodeLine{...}
+\DoxyCodeLine{hockey\_queue.get (data\_we\_got);       \textcolor{comment}{// Get data from the queue}}
+\end{DoxyCode}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_queue_ae4a3fd660457ea5f5a4f3605322db150}\label{class_queue_ae4a3fd660457ea5f5a4f3605322db150}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!Queue@{Queue}}
+\index{Queue@{Queue}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{Queue()}{Queue()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+\mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::\mbox{\hyperlink{class_queue}{Queue}} (\begin{DoxyParamCaption}\item[{Base\+Type\+\_\+t}]{queue\+\_\+size,  }\item[{const char $\ast$}]{p\+\_\+name = {\ttfamily NULL},  }\item[{Tick\+Type\+\_\+t}]{wait\+\_\+time = {\ttfamily portMAX\+\_\+DELAY} }\end{DoxyParamCaption})}
+
+
+
+Construct a queue object, allocating memory for the buffer. 
+
+This constructor creates the Free\+R\+T\+OS queue which is wrapped by the {\ttfamily \mbox{\hyperlink{class_queue}{Queue}}} class. 
+\begin{DoxyParams}{Parameters}
+{\em queue\+\_\+size} & The number of characters which can be stored in the queue \\
+\hline
+{\em p\+\_\+name} & A name to be shown in the list of task shares (default empty String) \\
+\hline
+{\em wait\+\_\+time} & How long, in R\+T\+OS ticks, to wait for a queue to become empty before a character can be sent. (Default\+: {\ttfamily port\+M\+A\+X\+\_\+\+D\+E\+L\+AY}, which causes the sending task to block until sending occurs.) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_queue_a7eb3e7ac6e9a1ec956a11cbdc7c5a44d}\label{class_queue_a7eb3e7ac6e9a1ec956a11cbdc7c5a44d}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!any@{any}}
+\index{any@{any}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{any()}{any()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::any (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return true if the queue has contents which can be read. 
+
+This method allows one to check if the queue has any contents. It must {\bfseries{not}} be called from within an interrupt service routine. \begin{DoxyReturn}{Returns}
+{\ttfamily true} if there\textquotesingle{}s something in the queue, {\ttfamily false} if not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a6bef71a925790602cef9eb6274ae61e3}\label{class_queue_a6bef71a925790602cef9eb6274ae61e3}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!available@{available}}
+\index{available@{available}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{available()}{available()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+unsigned port\+B\+A\+S\+E\+\_\+\+T\+Y\+PE \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::available (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of items in the queue. 
+
+This method returns the number of items waiting in the queue. It must {\bfseries{not}} be called from within an interrupt service routine; the method {\ttfamily I\+S\+R\+\_\+num\+\_\+items\+\_\+in()} can be called from within an I\+SR. \begin{DoxyReturn}{Returns}
+The number of items in the queue 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a255eb8557d8106fa5900c6e4a5483ce3}\label{class_queue_a255eb8557d8106fa5900c6e4a5483ce3}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!butt\_in@{butt\_in}}
+\index{butt\_in@{butt\_in}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{butt\_in()}{butt\_in()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::butt\+\_\+in (\begin{DoxyParamCaption}\item[{const data\+Type \&}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Put an item into the front of the queue to be retrieved first. 
+
+This method puts an item into the front of the queue so that it will be received first as long as nothing else is put in front of it. This is not the normal way to put things into a queue; using {\ttfamily \mbox{\hyperlink{class_queue_aa0667e09529d356a04f1efde346af266}{put()}}} to put items into the back of the queue is. If you always use this method, you\textquotesingle{}re making a stack rather than a queue, you weirdo. This method must {\bfseries{not}} be used within an interrupt service routine. 
+\begin{DoxyParams}{Parameters}
+{\em item} & Reference to the item which is going to be (rudely) put into the front of the queue \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily True} if the item was successfully queued, false if not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a14df528749e226183df3fa5472368e82}\label{class_queue_a14df528749e226183df3fa5472368e82}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!get@{get}}
+\index{get@{get}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+void \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::get (\begin{DoxyParamCaption}\item[{data\+Type \&}]{recv\+\_\+item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove the item at the head of the queue. 
+
+This method gets the item at the head of the queue and removes that item from the queue. If there\textquotesingle{}s nothing in the queue, this method waits, blocking the calling task, for the number of R\+T\+OS ticks specified in the {\ttfamily wait\+\_\+time} parameter to the queue constructor (the default is forever) or until something shows up. 
+\begin{DoxyParams}{Parameters}
+{\em recv\+\_\+item} & A reference to the item to be filled with data from the queue \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_queue_ab009e50722f689c48d146125f6d50519}\label{class_queue_ab009e50722f689c48d146125f6d50519}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!get\_handle@{get\_handle}}
+\index{get\_handle@{get\_handle}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{get\_handle()}{get\_handle()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+Queue\+Handle\+\_\+t \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::get\+\_\+handle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return a handle to the Free\+R\+T\+OS structure which runs this queue. 
+
+If somebody wants to do something which Free\+R\+T\+OS queues can do but this class doesn\textquotesingle{}t support, a handle for the queue wrapped by this class can be used to access the queue directly. This isn\textquotesingle{}t commonly done. \begin{DoxyReturn}{Returns}
+The handle of the Free\+R\+T\+OS queue which is wrapped within this C++ class 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a7b240bc3f080ea3656d0847b5d291095}\label{class_queue_a7b240bc3f080ea3656d0847b5d291095}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!is\_empty@{is\_empty}}
+\index{is\_empty@{is\_empty}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{is\_empty()}{is\_empty()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::is\+\_\+empty (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return true if the queue is empty. 
+
+This method checks if the queue is empty. It returns {\ttfamily true} if there are no items in the queue and {\ttfamily false} if there are items. \begin{DoxyReturn}{Returns}
+{\ttfamily true} if the queue is empty, {\ttfamily false} if it\textquotesingle{}s not empty 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a80711abebd086d5617e5c88dbd87b77a}\label{class_queue_a80711abebd086d5617e5c88dbd87b77a}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!ISR\_any@{ISR\_any}}
+\index{ISR\_any@{ISR\_any}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_any()}{ISR\_any()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::I\+S\+R\+\_\+any (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return true if the queue has items in it, from within an I\+SR. 
+
+This method allows one to check if the queue has any contents from within an interrupt service routine. It must {\bfseries{not}} be called from within normal, non-\/\+I\+SR code. \begin{DoxyReturn}{Returns}
+{\ttfamily true} if there\textquotesingle{}s something in the queue, {\ttfamily false} if not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a1acce9f67b2549a17a8419536aac396b}\label{class_queue_a1acce9f67b2549a17a8419536aac396b}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!ISR\_available@{ISR\_available}}
+\index{ISR\_available@{ISR\_available}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_available()}{ISR\_available()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+unsigned port\+B\+A\+S\+E\+\_\+\+T\+Y\+PE \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::I\+S\+R\+\_\+available (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of items in the queue, to an I\+SR. 
+
+This method returns the number of items waiting in the queue; it must be called only from within an interrupt service routine. \begin{DoxyReturn}{Returns}
+The number of items in the queue 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a24849f96865b52468bcd611ee67bd7dc}\label{class_queue_a24849f96865b52468bcd611ee67bd7dc}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!ISR\_butt\_in@{ISR\_butt\_in}}
+\index{ISR\_butt\_in@{ISR\_butt\_in}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_butt\_in()}{ISR\_butt\_in()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::I\+S\+R\+\_\+butt\+\_\+in (\begin{DoxyParamCaption}\item[{const data\+Type \&}]{item }\end{DoxyParamCaption})}
+
+
+
+Put an item into the front of the queue from within an I\+SR. 
+
+This method puts an item into the front of the queue from within an I\+SR. It must {\bfseries{not}} be used within normal, non-\/\+I\+SR code. 
+\begin{DoxyParams}{Parameters}
+{\em item} & The item which is going to be (rudely) put into the front of the queue \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the item was successfully queued, false if not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_afd37b4f184be25ecebf7957900321bbf}\label{class_queue_afd37b4f184be25ecebf7957900321bbf}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!ISR\_get@{ISR\_get}}
+\index{ISR\_get@{ISR\_get}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_get()}{ISR\_get()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+void \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::I\+S\+R\+\_\+get (\begin{DoxyParamCaption}\item[{data\+Type \&}]{recv\+\_\+item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove the item at the head of the queue from within an I\+SR. 
+
+This method gets and returns the item at the head of the queue from within an interrupt service routine. This method must {\bfseries{not}} be called from within normal non-\/\+I\+SR code. 
+\begin{DoxyParams}{Parameters}
+{\em recv\+\_\+item} & A reference to the item to be filled with data from the queue \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_queue_ac0d4a3d7feae804dea7f3cc72f21c624}\label{class_queue_ac0d4a3d7feae804dea7f3cc72f21c624}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!ISR\_is\_empty@{ISR\_is\_empty}}
+\index{ISR\_is\_empty@{ISR\_is\_empty}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_is\_empty()}{ISR\_is\_empty()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::I\+S\+R\+\_\+is\+\_\+empty (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return true if the queue is empty, from within an I\+SR. 
+
+This method checks if the queue is empty from within an interrupt service routine. It must not be used in normal non-\/\+I\+SR code. \begin{DoxyReturn}{Returns}
+{\ttfamily true} if the queue is empty, {\ttfamily false} if it\textquotesingle{}s not empty 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a087ad13824fab4dfa026ef5cf138ca05}\label{class_queue_a087ad13824fab4dfa026ef5cf138ca05}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!ISR\_peek@{ISR\_peek}}
+\index{ISR\_peek@{ISR\_peek}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_peek()}{ISR\_peek()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+void \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::I\+S\+R\+\_\+peek (\begin{DoxyParamCaption}\item[{data\+Type \&}]{recv\+\_\+item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the item at the front of the queue without deleting it, from within an I\+SR. 
+
+This method returns the item at the head of the queue without removing that item from the queue. If there\textquotesingle{}s nothing in the queue, this method returns the result of the default constructor for the data item, usually zero in the given data type. This method must {\bfseries{not}} be called from within an interrupt service routine. 
+\begin{DoxyParams}{Parameters}
+{\em recv\+\_\+item} & A reference to the item to be filled with data from the queue \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_queue_a9c966c6f5f91ccaf12bcb7723b8145af}\label{class_queue_a9c966c6f5f91ccaf12bcb7723b8145af}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!ISR\_put@{ISR\_put}}
+\index{ISR\_put@{ISR\_put}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{ISR\_put()}{ISR\_put()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::I\+S\+R\+\_\+put (\begin{DoxyParamCaption}\item[{const data\+Type \&}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Put an item into the queue from within an I\+SR. 
+
+This method puts an item of data into the back of the queue from within an interrupt service routine. It must {\bfseries{not}} be used within non-\/\+I\+SR code. 
+\begin{DoxyParams}{Parameters}
+{\em item} & Reference to the item which is going to be put into the queue \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the item was successfully queued, false if not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a44557ed37c98580b87d0196908330bcc}\label{class_queue_a44557ed37c98580b87d0196908330bcc}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!peek@{peek}}
+\index{peek@{peek}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{peek()}{peek()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+void \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::peek (\begin{DoxyParamCaption}\item[{data\+Type \&}]{recv\+\_\+item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the item at the queue head without removing it. 
+
+This method returns the item at the head of the queue without removing that item from the queue. If there\textquotesingle{}s nothing in the queue this method waits, blocking the calling task, for for the number of R\+T\+OS ticks specified in the {\ttfamily wait\+\_\+time} parameter to the queue constructor (the default is forever) or until something shows up. This method must {\bfseries{not}} be called from within an interrupt service routine. 
+\begin{DoxyParams}{Parameters}
+{\em recv\+\_\+item} & A reference to the item to be filled with data from the queue \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_queue_ace8d2d512e49f018c5e2df4b5a2bf810}\label{class_queue_ace8d2d512e49f018c5e2df4b5a2bf810}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!print\_in\_list@{print\_in\_list}}
+\index{print\_in\_list@{print\_in\_list}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{print\_in\_list()}{print\_in\_list()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+void \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::print\+\_\+in\+\_\+list (\begin{DoxyParamCaption}\item[{Print \&}]{print\+\_\+dev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Print the queue\textquotesingle{}s status to a serial device. 
+
+This method makes a printout of the queue\textquotesingle{}s status on the given serial device, then calls this same method for the next item of thread-\/safe data in the linked list of items. 
+\begin{DoxyParams}{Parameters}
+{\em print\+\_\+dev} & Reference to the serial device on which to print \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_base_share_a6f72027a717afada4679fd08d08bb4b6}{Base\+Share}}.
+
+\mbox{\Hypertarget{class_queue_aa0667e09529d356a04f1efde346af266}\label{class_queue_aa0667e09529d356a04f1efde346af266}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!put@{put}}
+\index{put@{put}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::put (\begin{DoxyParamCaption}\item[{const data\+Type \&}]{item }\end{DoxyParamCaption})}
+
+
+
+Put an item into the queue behind other items. 
+
+This method puts an item of data into the back of the queue, which is the normal way to put something into a queue. If you want to be rude and put an item into the front of the queue so it will be retrieved first, use {\ttfamily \mbox{\hyperlink{class_queue_a255eb8557d8106fa5900c6e4a5483ce3}{butt\+\_\+in()}}} instead. {\bfseries{This method must not be used within an Interrupt Service Routine.}} 
+\begin{DoxyParams}{Parameters}
+{\em item} & Reference to the item which is going to be put into the queue \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the item was successfully queued, false if not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_queue_a2f5a7d38f857999a1c4cebe31089b0f7}\label{class_queue_a2f5a7d38f857999a1c4cebe31089b0f7}} 
+\index{Queue$<$ dataType $>$@{Queue$<$ dataType $>$}!usable@{usable}}
+\index{usable@{usable}!Queue$<$ dataType $>$@{Queue$<$ dataType $>$}}
+\doxysubsubsection{\texorpdfstring{usable()}{usable()}}
+{\footnotesize\ttfamily template$<$class data\+Type $>$ \\
+bool \mbox{\hyperlink{class_queue}{Queue}}$<$ data\+Type $>$\+::usable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Indicates whether this queue is usable. 
+
+This method returns a value which is {\ttfamily true} if this queue has been successfully set up and can be used. \begin{DoxyReturn}{Returns}
+{\ttfamily true} if this queue is usable, {\ttfamily false} if not 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{taskqueue_8h}{taskqueue.\+h}}\end{DoxyCompactItemize}

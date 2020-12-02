@@ -1,0 +1,43 @@
+\hypertarget{baseshare_8cpp}{}\doxysection{src/baseshare.cpp File Reference}
+\label{baseshare_8cpp}\index{src/baseshare.cpp@{src/baseshare.cpp}}
+
+
+Source code of a base class for type-\/safe, thread-\/safe task data exchange classes.  
+
+
+{\ttfamily \#include \char`\"{}baseshare.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{baseshare_8cpp_a4700b5f4d08a994556955c2aa75f3236}{print\+\_\+all\+\_\+shares}} (Print \&printer)
+\begin{DoxyCompactList}\small\item\em Start the printout showing the status of all shared data items. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Source code of a base class for type-\/safe, thread-\/safe task data exchange classes. 
+
+This file contains a base class for classes which exchange data between tasks. Inter-\/task data must be exchanged in a thread-\/safe manner, so the classes which share the data use mutexes or mutual exclusion mechanisms to prevent corruption of data. A linked list of all inter-\/task data items is kept by the system, and this base class contains members that handle that linked list.
+
+\begin{DoxyDate}{Date}
+2014-\/Oct-\/18 J\+RR Created file 
+
+2020-\/Oct-\/19 J\+RR Modified for use with Arduino/\+Free\+R\+T\+OS platform
+\end{DoxyDate}
+License\+: This file is copyright 2014 -\/ 2020 by JR Ridgely and released under the Lesser G\+NU Public License, version 2. It intended for educational use only, but its use is not limited thereto. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{baseshare_8cpp_a4700b5f4d08a994556955c2aa75f3236}\label{baseshare_8cpp_a4700b5f4d08a994556955c2aa75f3236}} 
+\index{baseshare.cpp@{baseshare.cpp}!print\_all\_shares@{print\_all\_shares}}
+\index{print\_all\_shares@{print\_all\_shares}!baseshare.cpp@{baseshare.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_all\_shares()}{print\_all\_shares()}}
+{\footnotesize\ttfamily void print\+\_\+all\+\_\+shares (\begin{DoxyParamCaption}\item[{Print \&}]{printer }\end{DoxyParamCaption})}
+
+
+
+Start the printout showing the status of all shared data items. 
+
+This method begins printing out the status of all items in the system\textquotesingle{}s linked list of shared data items (queues, task shares, and so on). The most recently created share\textquotesingle{}s status is printed first, followed by the status of other shares in reverse order of creation. 
+\begin{DoxyParams}{Parameters}
+{\em printer} & Pointer to a serial device on which to print \\
+\hline
+\end{DoxyParams}
