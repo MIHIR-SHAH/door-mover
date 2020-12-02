@@ -2,7 +2,7 @@
 ## **Authors:** _Mihir Shah, Zoe Lam, Andrew Noble_  
 
 ## Project Documentation
-# https://mihir-shah.github.io/door-mover/html/  
+### https://mihir-shah.github.io/door-mover/html/  
 
 ## Overview
 This source code actuates a motor to open a sliding door based on the temperature difference inside and outside the room.
