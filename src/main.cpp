@@ -14,8 +14,8 @@
  *                         Also added some testing code for virtual testing using the wrong parts...
  *  @date   2020-Nov-28 ZL, MS Work on debugging code
  *  @date   2020-Nov-29 ZL, MS Completed debugging and commented code
- *  @date   2020-Nov-30 ZL, added  bool @param closed to check if door is open or closed
- *  @date   2020-Nov-30 MS, debugging bool @param closed to check if door is open or closed, 
+ *  @date   2020-Nov-30 ZL, added  bool closed to check if door is open or closed
+ *  @date   2020-Nov-30 MS, debugging bool closed to check if door is open or closed, 
  *                          updated emergency stop functionality, beautified the code
  * 
  */
@@ -29,7 +29,6 @@
 #endif
 
 #include "taskshare.h"          // @author J. R. Ridgely
-#include "taskqueue.h"          // @author J. R. Ridgely
 #include <Wire.h>           
 #include "Adafruit_MCP9808.h"   // @author Adafruit
 #include "motordriver.h"        // @author Mihir Shah
