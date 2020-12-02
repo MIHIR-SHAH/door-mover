@@ -179,23 +179,19 @@ void task_e_stop(void* p_params)
   // Initialise the xLastWakeTime variable with the current time.
   // It will be used to run the task at precise intervals
   TickType_t xLastWakeTime = xTaskGetTickCount();
-  // uint8_t distance_we_want = 5;
-  pinMode(D3, INPUT);
+  
+  pinMode(D3, INPUT);     // Set up pin D3 as an input
   for(;;)
   {
-    // uint8_t measured_distance = ulta.measure();
-
-    // Serial << "Measured Distance: " << measured_distance << endl;
-    
-    if(digitalRead(D3) == HIGH /** measured_distance < distance_we_want */)
+    if(digitalRead(D3) == HIGH)   // If pin D3 has an input signal
     {
-      emergency.put(true);
-      Serial << "--- EMERGENCY STOP ---" << endl;
-      moto.brake();
+      emergency.put(true);        // Pass "true" into the shared emergency boolean
+      Serial << "--- EMERGENCY STOP ---" << endl;   // Print "EMERGENCY STOP" to the serial interface
+      moto.brake();               // Force the motor to brake 
     }
     else
     {
-      emergency.put(false);
+      emergency.put(false);       // If no signal input to D3, reset the emergency boolean to false
     }   
     vTaskDelayUntil (&xLastWakeTime, sim_period);   // Precision delay that accouts for the time it takes the task to run
   }
