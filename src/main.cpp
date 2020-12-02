@@ -1,5 +1,5 @@
 /** @file main.cpp
- *    This file contains the main program that automates door motion.
+ *  @brief This file contains the main program that automates door motion.
  * 
  *  @author Zoe Lam
  *  @author Andrew Noble
