@@ -41,7 +41,7 @@ Adafruit_MCP9808 tempOutside = Adafruit_MCP9808();      // chip on custom board
 Adafruit_MCP9808 tempInside = Adafruit_MCP9808();       // breakout board
 
 // Create motor driver object
-MotorDriver moto = MotorDriver(D8, D9);
+MotorDriver moto = MotorDriver(D9, D8);
 
 // Universal variable to count motor ticks
 volatile int32_t ticks;
@@ -97,7 +97,7 @@ void task_motor_movement(void* p_params)
                               
   float min_delta = 3.000;      // Min temperature difference (inside - outside)
 
-  long dist_count = 2300;       // (not the right number rn) Number of revolutions to travel 24in * number of ticks to complete 1 revolution
+  long dist_count = 24*16*240;  // Number of revolutions to travel 24in * number of ticks to complete 1 revolution
                                 // (24 in)*(16 thd/in)* 240 pulses per rev * 1 rev/thd
                                 // note: ~240 ticks for 1 revolution by hand
                                 // looking down leadscrew, cw rotation causes door to open
@@ -179,23 +179,19 @@ void task_e_stop(void* p_params)
   // Initialise the xLastWakeTime variable with the current time.
   // It will be used to run the task at precise intervals
   TickType_t xLastWakeTime = xTaskGetTickCount();
-  // uint8_t distance_we_want = 5;
-  pinMode(D3, INPUT);
+  
+  pinMode(D3, INPUT);     // Set up pin D3 as an input
   for(;;)
   {
-    // uint8_t measured_distance = ulta.measure();
-
-    // Serial << "Measured Distance: " << measured_distance << endl;
-    
-    if(digitalRead(D3) == HIGH /** measured_distance < distance_we_want */)
+    if(digitalRead(D3) == HIGH)   // If pin D3 has an input signal
     {
-      emergency.put(true);
-      Serial << "--- EMERGENCY STOP ---" << endl;
-      moto.brake();
+      emergency.put(true);        // Pass "true" into the shared emergency boolean
+      Serial << "--- EMERGENCY STOP ---" << endl;   // Print "EMERGENCY STOP" to the serial interface
+      moto.brake();               // Force the motor to brake 
     }
     else
     {
-      emergency.put(false);
+      emergency.put(false);       // If no signal input to D3, reset the emergency boolean to false
     }   
     vTaskDelayUntil (&xLastWakeTime, sim_period);   // Precision delay that accouts for the time it takes the task to run
   }
