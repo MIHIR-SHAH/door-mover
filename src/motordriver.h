@@ -1,5 +1,5 @@
 /** @file motordriver.h
- *      This file contains the headers for a class the implements a DRV8871 Motor Driver.
+ *  @brief This file contains the headers for a class the implements a DRV8871 Motor Driver.
  * 
  *  @author Mihir Shah
  *  @date 2020-Nov-19 Original file.

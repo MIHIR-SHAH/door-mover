@@ -1,5 +1,5 @@
 /** @file motordriver.cpp
- *    This file contains source code for a class that implements a motor driver for the DRV8871 chip.
+ *  @brief  This file contains source code for a class that implements a motor driver for the DRV8871 chip.
  * 
  *  @author Mihir Shah
  *  @date  2020-Nov-19 Original File
