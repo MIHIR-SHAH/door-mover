@@ -32,8 +32,8 @@ MotorDriver::MotorDriver (uint8_t M1, uint8_t M2)
     digitalWrite(pin_M2, 0);
 }
 
-/** @brief   Tells the motor to move forward, and at what speed.
- *  @details Input a PWM value so the motor controller can adjust the speed of the motor.
+/** @brief   Tells the motor to move forward.
+ *  @details Motor runs at full speed.
  *  
  *  @returns Nothing.
  */
@@ -58,8 +58,8 @@ void MotorDriver::brake(void)
 }
 
 
-/** @brief   Tells the motor to move in reverse, and at what speed.
- *  @details Input a PWM value so the motor controller can adjust the speed of the motor.
+/** @brief   Tells the motor to move in reverse.
+ *  @details Motor runs at full speed.
  *  
  *  @returns Nothing.
  */
