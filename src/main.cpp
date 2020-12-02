@@ -41,7 +41,7 @@ Adafruit_MCP9808 tempOutside = Adafruit_MCP9808();      // chip on custom board
 Adafruit_MCP9808 tempInside = Adafruit_MCP9808();       // breakout board
 
 // Create motor driver object
-MotorDriver moto = MotorDriver(D8, D9);
+MotorDriver moto = MotorDriver(D9, D8);
 
 // Universal variable to count motor ticks
 volatile int32_t ticks;
@@ -97,7 +97,7 @@ void task_motor_movement(void* p_params)
                               
   float min_delta = 3.000;      // Min temperature difference (inside - outside)
 
-  long dist_count = 2300;       // (not the right number rn) Number of revolutions to travel 24in * number of ticks to complete 1 revolution
+  long dist_count = 24*16*240;  // Number of revolutions to travel 24in * number of ticks to complete 1 revolution
                                 // (24 in)*(16 thd/in)* 240 pulses per rev * 1 rev/thd
                                 // note: ~240 ticks for 1 revolution by hand
                                 // looking down leadscrew, cw rotation causes door to open
